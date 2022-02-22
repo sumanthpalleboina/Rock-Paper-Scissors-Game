@@ -68,17 +68,16 @@ class Game extends Component {
       (Choiceimage === choicesList[0].imageUrl &&
         opponentImage === choicesList[2].imageUrl)
     ) {
-      if (score > 0) {
-        this.setState(prevState => ({
-          score: prevState.score - 1,
-        }))
-      }
+      this.setState(prevState => ({
+        score: prevState.score - 1,
+      }))
     }
   }
 
   clickRock = () => {
     const {choicesList} = this.props
-    const random = Math.floor(Math.random() * 2.5)
+    const listLength = choicesList.length
+    const random = Math.floor(Math.random() * listLength)
     const opponentImage = choicesList[random].imageUrl
     this.setState(
       {
@@ -92,7 +91,8 @@ class Game extends Component {
 
   clickScissors = () => {
     const {choicesList} = this.props
-    const random = Math.floor(Math.random() * 2.5)
+    const listLength = choicesList.length
+    const random = Math.floor(Math.random() * listLength)
     const opponentImage = choicesList[random].imageUrl
     this.setState(
       {
@@ -106,7 +106,8 @@ class Game extends Component {
 
   clickPaper = () => {
     const {choicesList} = this.props
-    const random = Math.floor(Math.random() * 2.5)
+    const listLength = choicesList.length
+    const random = Math.floor(Math.random() * listLength)
     const opponentImage = choicesList[random].imageUrl
     this.setState(
       {
@@ -235,7 +236,8 @@ class Game extends Component {
   )
 
   render() {
-    const {isGameOver, score} = this.state
+    const {isGameOver, score, opponentImage} = this.state
+    console.log(opponentImage)
     return (
       <GameContainer>
         <Header score={score} />
